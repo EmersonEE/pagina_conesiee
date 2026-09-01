@@ -18,13 +18,14 @@ const APP_CONFIG = {
   EVENT_FULL_NAME: 'XXV Congreso Nacional de Estudiantes de Ingeniería Mecánica Eléctrica, Eléctrica y Electrónica',
   EVENT_DATES: '28 de septiembre al 2 de octubre de 2026',
   INSTITUTION: 'Escuela de Ingeniería Mecánica Eléctrica (EIME), Universidad de San Carlos de Guatemala (USAC)',
-  VENUE_DEFAULT: 'Auditorio Central EIME / Híbrido',
+  VENUE_DEFAULT: 'Biblioteca Central USAC',
   TIMEZONE: 'America/Guatemala',
 
   // =========================================================================
-  // MARCADOR: Correo de contacto del comité organizador
+  // Correo de contacto oficial del comité organizador
   // =========================================================================
-  COMMITTEE_EMAIL: '[INDICAR_CORREO_DEL_COMITE]',
+  COMMITTEE_EMAIL: 'congresoconesieeusa@ingenieria.usac.edu.gt',
+  PORTAL_URL: 'https://linktr.ee/congresoconesieeusac',
 
   // Rutas de Identidad Visual
   LOGO_OFFICIAL: 'assets/logo/conesiee-2026.png',

@@ -153,6 +153,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
   };
 
+  /**
+   * Formatea cadenas u objetos de hora a formato limpio HH:mm (ej. "14:00")
+   * eliminando fechas no deseadas de Google Sheets (ej. "Sat Dec 30 1899 14:00:00...").
+   */
+  const formatCleanTime = (timeVal) => {
+    if (!timeVal) return '';
+    const str = String(timeVal).trim();
+    const match = str.match(/(?:T|\b)([01]?\d|2[0-3]):([0-5]\d)/);
+    if (match) {
+      return `${match[1].padStart(2, '0')}:${match[2]}`;
+    }
+    return str;
+  };
+
   // =========================================================================
   // 6. ACTUALIZACIÓN Y CONSULTA DE DISPONIBILIDAD (POLLING)
   // =========================================================================
@@ -318,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="slot-card__top">
                 <div class="slot-card__time">
                   <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
-                  <span>${slot.hora_inicio} – ${slot.hora_fin}</span>
+                  <span>${formatCleanTime(slot.hora_inicio)} – ${formatCleanTime(slot.hora_fin)}</span>
                 </div>
                 <span class="status-badge ${badgeClass}">
                   <span class="status-badge__dot" aria-hidden="true"></span>
@@ -341,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   class="btn-book" 
                   data-action="book" 
                   data-slot-id="${slot.id}"
-                  aria-label="Reservar horario de ${slot.hora_inicio} a ${slot.hora_fin} el ${formatShortDate(slot.fecha)}"
+                  aria-label="Reservar horario de ${formatCleanTime(slot.hora_inicio)} a ${formatCleanTime(slot.hora_fin)} el ${formatShortDate(slot.fecha)}"
                 >
                   <svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg>
                   <span>Reservar Horario</span>
@@ -405,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Poblar resumen
     DOM.formHorarioId.value = slot.id;
     DOM.summarySlotDate.textContent = formatFriendlyDate(slot.fecha);
-    DOM.summarySlotTime.textContent = `${slot.hora_inicio} – ${slot.hora_fin} (Hora Guatemala)`;
+    DOM.summarySlotTime.textContent = `${formatCleanTime(slot.hora_inicio)} – ${formatCleanTime(slot.hora_fin)} (Hora Guatemala)`;
     DOM.summarySlotVenue.textContent = slot.sede || APP_CONFIG.VENUE_DEFAULT;
 
     // Modalidad por defecto
@@ -520,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       DOM.successResCode.textContent = response.codigo_reservacion;
       DOM.successSpeakerName.textContent = response.nombre_expositor;
-      DOM.successSlotDateTime.textContent = `${formatShortDate(response.fecha)} | ${response.hora_inicio} – ${response.hora_fin}`;
+      DOM.successSlotDateTime.textContent = `${formatShortDate(response.fecha)} | ${formatCleanTime(response.hora_inicio)} – ${formatCleanTime(response.hora_fin)}`;
       DOM.successTalkTitle.textContent = response.titulo_conferencia;
 
       DOM.modalViewSuccess.style.display = 'block';

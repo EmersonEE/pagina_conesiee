@@ -13,11 +13,11 @@ function getConfigMap(ss) {
   var config = {
     NOMBRE_EVENTO: 'CONESIEE 2026',
     ZONA_HORARIA: 'America/Guatemala',
-    CORREO_COMITE: 'contacto@conesiee.usac.edu.gt',
+    CORREO_COMITE: 'congresoconesieeusa@ingenieria.usac.edu.gt',
     RESERVACIONES_ACTIVAS: 'true',
     INTERVALO_ACTUALIZACION_SEG: '20',
     TEXTO_PRIVACIDAD: '',
-    ENLACE_INSTITUCIONAL: 'https://eime.usac.edu.gt'
+    ENLACE_INSTITUCIONAL: 'https://linktr.ee/congresoconesieeusac'
   };
 
   if (!sheet || sheet.getLastRow() < 2) {
@@ -107,9 +107,9 @@ function apiListSlots() {
       ? Utilities.formatDate(rawFecha, config.ZONA_HORARIA || 'America/Guatemala', 'yyyy-MM-dd')
       : String(rawFecha);
 
-    var horaInicio = String(data[i][2]);
-    var horaFin = String(data[i][3]);
-    var sede = String(data[i][4]);
+    var horaInicio = formatCleanTimeAppScript(data[i][2], config.ZONA_HORARIA);
+    var horaFin = formatCleanTimeAppScript(data[i][3], config.ZONA_HORARIA);
+    var sede = String(data[i][4] || '').trim() || 'Biblioteca Central USAC';
     var estado = String(data[i][5]);
     var resId = String(data[i][6]);
 
@@ -308,9 +308,9 @@ function apiReserveSlot(payload) {
       codigo_reservacion: codigoReservacion,
       horario_id: data.horario_id,
       fecha: fechaStr,
-      hora_inicio: slotRecord.hora_inicio,
-      hora_fin: slotRecord.hora_fin,
-      sede: slotRecord.sede,
+      hora_inicio: formatCleanTimeAppScript(slotRecord.hora_inicio, config.ZONA_HORARIA),
+      hora_fin: formatCleanTimeAppScript(slotRecord.hora_fin, config.ZONA_HORARIA),
+      sede: slotRecord.sede || 'Biblioteca Central USAC',
       nombre_expositor: data.nombre,
       titulo_conferencia: data.titulo,
       modalidad: data.modalidad,
@@ -318,3 +318,21 @@ function apiReserveSlot(payload) {
     };
   }, 10000); // 10 segundos de espera de lock
 }
+
+/**
+ * Formatea limpiamente valores de hora a HH:mm en Apps Script
+ * independientemente de si provienen como Date o texto.
+ */
+function formatCleanTimeAppScript(val, timezone) {
+  if (!val) return '';
+  if (val instanceof Date) {
+    return Utilities.formatDate(val, timezone || 'America/Guatemala', 'HH:mm');
+  }
+  var str = String(val).trim();
+  var match = str.match(/(?:T|\b)([01]?\d|2[0-3]):([0-5]\d)/);
+  if (match) {
+    return (match[1].length === 1 ? '0' + match[1] : match[1]) + ':' + match[2];
+  }
+  return str;
+}
+

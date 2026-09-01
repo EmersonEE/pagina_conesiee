@@ -82,24 +82,24 @@ function setupSheetHorarios(ss) {
     // Horarios Oficiales CONESIEE 2026 (Zona Horaria America/Guatemala)
     var initialSlots = [
       // Lunes 28 de septiembre 2026
-      ['SLOT-2026-0928-1400', '2026-09-28', '14:00', '15:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0928-1600', '2026-09-28', '16:00', '17:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0928-1700', '2026-09-28', '17:00', '18:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0928-1400', '2026-09-28', '14:00', '15:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0928-1600', '2026-09-28', '16:00', '17:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0928-1700', '2026-09-28', '17:00', '18:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
 
       // Martes 29 de septiembre 2026
-      ['SLOT-2026-0929-1400', '2026-09-29', '14:00', '15:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0929-1600', '2026-09-29', '16:00', '17:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0929-1700', '2026-09-29', '17:00', '18:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0929-1400', '2026-09-29', '14:00', '15:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0929-1600', '2026-09-29', '16:00', '17:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0929-1700', '2026-09-29', '17:00', '18:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
 
       // Miércoles 30 de septiembre 2026
-      ['SLOT-2026-0930-1400', '2026-09-30', '14:00', '15:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0930-1600', '2026-09-30', '16:00', '17:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0930-1700', '2026-09-30', '17:00', '18:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0930-1400', '2026-09-30', '14:00', '15:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0930-1600', '2026-09-30', '16:00', '17:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0930-1700', '2026-09-30', '17:00', '18:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
 
       // Jueves 1 de octubre 2026
-      ['SLOT-2026-1001-0900', '2026-10-01', '09:00', '10:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-1001-1100', '2026-10-01', '11:00', '12:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-1001-1200', '2026-10-01', '12:00', '13:00', 'Auditorio Central EIME / Híbrido', 'Disponible', '', new Date().toISOString()]
+      ['SLOT-2026-1001-0900', '2026-10-01', '09:00', '10:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-1001-1100', '2026-10-01', '11:00', '12:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-1001-1200', '2026-10-01', '12:00', '13:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()]
     ];
 
     sheet.getRange(2, 1, initialSlots.length, headers.length).setValues(initialSlots);
@@ -175,11 +175,11 @@ function setupSheetConfiguracion(ss) {
     var initialConfig = [
       ['NOMBRE_EVENTO', 'XXV Congreso Nacional de Estudiantes de Ingeniería Mecánica Eléctrica, Eléctrica y Electrónica - CONESIEE 2026', 'Nombre oficial del congreso'],
       ['ZONA_HORARIA', 'America/Guatemala', 'Zona horaria para visualización y validaciones'],
-      ['CORREO_COMITE', '[INDICAR_CORREO_DEL_COMITE]', 'Correo oficial para dudas de expositores'],
+      ['CORREO_COMITE', 'congresoconesieeusa@ingenieria.usac.edu.gt', 'Correo oficial para dudas de expositores'],
       ['RESERVACIONES_ACTIVAS', 'true', 'Control maestro para aceptar nuevas reservaciones (true/false)'],
       ['INTERVALO_ACTUALIZACION_SEG', '20', 'Intervalo sugerido en segundos para polling del frontend'],
       ['TEXTO_PRIVACIDAD', 'Los datos personales recabados serán utilizados exclusivamente para la gestión logística y académica del CONESIEE 2026 por la Escuela de Ingeniería Mecánica Eléctrica de la USAC.', 'Aviso de protección de datos'],
-      ['ENLACE_INSTITUCIONAL', 'https://eime.usac.edu.gt', 'Enlace al portal oficial de la Escuela EIME USAC']
+      ['ENLACE_INSTITUCIONAL', 'https://linktr.ee/congresoconesieeusac', 'Enlace al portal oficial del congreso']
     ];
 
     sheet.getRange(2, 1, initialConfig.length, headers.length).setValues(initialConfig);
