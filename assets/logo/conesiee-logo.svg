@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" width="500" height="120" role="img" aria-label="CONESIEE 2026 Logo">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE066" />
+      <stop offset="100%" stop-color="#F1C40F" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3E62" />
+      <stop offset="100%" stop-color="#0B192C" />
+    </linearGradient>
+  </defs>
+
+  <!-- Emblema de Ingeniería: Engranaje & Rayo Eléctrico -->
+  <g transform="translate(10, 10)">
+    <!-- Círculo de fondo del escudo -->
+    <circle cx="50" cy="50" r="46" fill="url(#blueGrad)" stroke="url(#goldGrad)" stroke-width="3"/>
+    
+    <!-- Dientes de Engranaje Mecánico -->
+    <path d="M50 14 L54 14 L55 22 L62 25 L68 20 L72 23 L70 31 L76 36 L84 34 L86 38 L81 44 L83 50 L83 56 L81 62 L86 68 L84 72 L76 70 L70 75 L72 83 L68 86 L62 81 L55 84 L54 92 L50 92 L46 92 L45 84 L38 81 L32 86 L28 83 L30 75 L24 70 L16 72 L14 68 L19 62 L17 56 L17 50 L19 44 L14 38 L16 34 L24 36 L30 31 L28 23 L32 20 L38 25 L45 22 L46 14 Z" fill="none" stroke="#F1C40F" stroke-width="2.5" opacity="0.85"/>
+    <circle cx="50" cy="50" r="26" fill="#0B192C" stroke="#FFE066" stroke-width="2"/>
+
+    <!-- Rayo de Energía Eléctrica y Electrónica -->
+    <path d="M53 28 L40 52 L49 52 L45 74 L62 46 L52 46 Z" fill="url(#goldGrad)" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <!-- Textos Institucionales -->
+  <!-- Título Principal -->
+  <text x="125" y="48" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF" letter-spacing="2">CONESIEE</text>
+  <text x="325" y="48" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#F1C40F" letter-spacing="1">2026</text>
+
+  <!-- Subtítulo del Congreso -->
+  <text x="125" y="72" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#E0E6ED" letter-spacing="0.5">XXV CONGRESO NACIONAL DE ESTUDIANTES</text>
+  <text x="125" y="90" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="400" fill="#9FB3C8">INGENIERÍA MECÁNICA ELÉCTRICA, ELÉCTRICA Y ELECTRÓNICA</text>
+  <text x="125" y="105" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#F1C40F">EIME · UNIVERSIDAD DE SAN CARLOS DE GUATEMALA</text>
+</svg>

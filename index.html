@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema oficial de disponibilidad y reservación de espacios de conferencias para el XXV Congreso Nacional de Estudiantes de Ingeniería Mecánica Eléctrica, Eléctrica y Electrónica (CONESIEE 2026) - Universidad de San Carlos de Guatemala.">
+  <meta name="theme-color" content="#0B192C">
+  <title>Agenda y Reservación de Conferencias | CONESIEE 2026 - USAC</title>
+
+  <!-- Favicon e Icono institucional -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo/conesiee-logo.svg">
+
+  <!-- Hojas de Estilo -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Carga del Sprite SVG de Iconos -->
+  <div id="svg-sprite-container" aria-hidden="true" style="display:none;"></div>
+
+  <!-- 1. ENCABEZADO INSTITUCIONAL -->
+  <header class="header" role="banner">
+    <div class="header__container">
+      <a href="#" class="header__brand" aria-label="Inicio CONESIEE 2026">
+        <img 
+          src="assets/logo/conesiee-2026.png" 
+          alt="Logotipo CONESIEE 2026" 
+          class="header__logo"
+          onerror="this.onerror=null; this.src='assets/logo/conesiee-logo.svg';"
+        >
+      </a>
+
+      <div class="header__live-status" aria-live="polite">
+        <div class="live-indicator">
+          <span class="live-indicator__dot" aria-hidden="true"></span>
+          <span>En vivo</span>
+        </div>
+        <span class="sr-only">Última actualización: </span>
+        <span id="last-update-text">Cargando disponibilidad...</span>
+        <button id="btn-manual-refresh" class="btn-refresh" aria-label="Actualizar disponibilidad de horarios manualmente">
+          <svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+          <span>Actualizar</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <!-- 2. SECCIÓN HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__container">
+        <div class="hero__badge">
+          <svg class="icon" aria-hidden="true"><use href="#icon-mic"></use></svg>
+          <span>Convocatoria de Ponencias</span>
+        </div>
+        <h1 id="hero-heading" class="hero__title">
+          Reserva tu Espacio de Conferencia <span class="hero__title-accent">CONESIEE 2026</span>
+        </h1>
+        <p class="hero__subtitle">
+          XXV Congreso Nacional de Estudiantes de Ingeniería Mecánica Eléctrica, Eléctrica y Electrónica.
+          Selecciona tu horario disponible y asegura tu participación académica en el congreso más importante de la región.
+        </p>
+
+        <div class="hero__meta-grid">
+          <div class="hero__meta-item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+            <span><strong>28 Sep – 02 Oct 2026</strong></span>
+          </div>
+          <div class="hero__meta-item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-map-pin"></use></svg>
+            <span>Escuela de Mecánica Eléctrica, USAC</span>
+          </div>
+          <div class="hero__meta-item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
+            <span>Hora Oficial: Guatemala (UTC-6)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BARRA DE ESTADÍSTICAS DE DISPONIBILIDAD -->
+    <section class="stats-bar" aria-label="Resumen de disponibilidad">
+      <div class="stats-grid">
+        <div class="stat-card stat-card--total">
+          <span class="stat-card__number" id="stat-total">--</span>
+          <span class="stat-card__label">Total Espacios</span>
+        </div>
+        <div class="stat-card stat-card--available">
+          <span class="stat-card__number" id="stat-available">--</span>
+          <span class="stat-card__label">Disponibles</span>
+        </div>
+        <div class="stat-card stat-card--reserved">
+          <span class="stat-card__number" id="stat-reserved">--</span>
+          <span class="stat-card__label">Reservados</span>
+        </div>
+        <div class="stat-card stat-card--blocked">
+          <span class="stat-card__number" id="stat-blocked">--</span>
+          <span class="stat-card__label">Especiales</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CONTROLES DE FILTRADO Y BÚSQUEDA -->
+    <section class="controls-section" aria-label="Filtros de horarios">
+      <div class="controls-card">
+        <nav class="day-filters" aria-label="Filtrar por fecha">
+          <button class="day-filter-btn is-active" data-day="all">Todos los días</button>
+          <button class="day-filter-btn" data-day="2026-09-28">Lun 28 Sep</button>
+          <button class="day-filter-btn" data-day="2026-09-29">Mar 29 Sep</button>
+          <button class="day-filter-btn" data-day="2026-09-30">Mié 30 Sep</button>
+          <button class="day-filter-btn" data-day="2026-10-01">Jue 01 Oct</button>
+        </nav>
+
+        <div class="status-filter">
+          <label for="filter-status" class="sr-only">Filtrar por estado</label>
+          <select id="filter-status" class="status-filter-select">
+            <option value="all">Todos los estados</option>
+            <option value="Disponible" selected>Solo Disponibles</option>
+            <option value="Reservado">Reservados</option>
+            <option value="Bloqueado">Bloqueados</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CONTENEDOR DE HORARIOS Y TARJETAS -->
+    <section class="schedule-section" aria-label="Listado de horarios por día">
+      <div id="schedule-container" aria-live="polite">
+        <div class="loading-state">
+          <div class="spinner" role="status" aria-label="Cargando horarios"></div>
+          <p>Consultando horarios disponibles en tiempo real con Google Sheets...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 6. MODAL ACCESIBLE DE RESERVACIÓN -->
+  <div id="booking-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <!-- Encabezado del Modal -->
+      <div class="modal-header">
+        <h2 id="modal-title" class="modal-title">
+          <svg class="icon" aria-hidden="true"><use href="#icon-mic"></use></svg>
+          <span>Reservar Horario de Ponencia</span>
+        </h2>
+        <button type="button" class="modal-close-btn" id="btn-close-modal" aria-label="Cerrar ventana de reservación">
+          <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+        </button>
+      </div>
+
+      <!-- Cuerpo del Modal (Formulario) -->
+      <div class="modal-body" id="modal-body-content">
+        <!-- Vista 1: Formulario -->
+        <div id="modal-view-form">
+          <div class="slot-summary-box" aria-label="Detalles del horario seleccionado">
+            <div class="slot-summary-item">
+              <span class="slot-summary-label">Fecha</span>
+              <span class="slot-summary-val" id="summary-slot-date">--</span>
+            </div>
+            <div class="slot-summary-item">
+              <span class="slot-summary-label">Horario</span>
+              <span class="slot-summary-val" id="summary-slot-time">--</span>
+            </div>
+            <div class="slot-summary-item" style="grid-column: span 2;">
+              <span class="slot-summary-label">Sede / Auditorio</span>
+              <span class="slot-summary-val" id="summary-slot-venue">--</span>
+            </div>
+          </div>
+
+          <form id="booking-form" novalidate>
+            <!-- ID de Horario Oculto -->
+            <input type="hidden" name="horario_id" id="form-horario-id" value="">
+
+            <!-- Campo Honeypot Oculto (Anti-bots) -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website_hp">No completar este campo</label>
+              <input type="text" name="website_hp" id="website_hp" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- 1. Nombre Completo -->
+            <div class="form-group">
+              <label for="form-nombre" class="form-label">
+                Nombre Completo del Expositor <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="form-nombre" name="nombre" class="form-input" placeholder="Ej. Ing. María Mercedes Morales" required autocomplete="name">
+              <div class="form-error-msg" id="error-nombre"></div>
+            </div>
+
+            <!-- 2. Institución / Empresa -->
+            <div class="form-group">
+              <label for="form-institucion" class="form-label">
+                Institución, Empresa o Universidad <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="form-institucion" name="institucion" class="form-input" placeholder="Ej. Universidad de San Carlos / IEEE Sección Guatemala" required>
+              <div class="form-error-msg" id="error-institucion"></div>
+            </div>
+
+            <!-- 3. Correo Electrónico -->
+            <div class="form-group">
+              <label for="form-correo" class="form-label">
+                Correo Electrónico de Contacto <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input type="email" id="form-correo" name="correo" class="form-input" placeholder="ejemplo@correo.com" required autocomplete="email">
+              <div class="form-hint">Enviaremos la confirmación oficial a este correo.</div>
+              <div class="form-error-msg" id="error-correo"></div>
+            </div>
+
+            <!-- 4. Teléfono -->
+            <div class="form-group">
+              <label for="form-telefono" class="form-label">
+                Número de Teléfono / WhatsApp <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input type="tel" id="form-telefono" name="telefono" class="form-input" placeholder="+502 5555 5555" required autocomplete="tel">
+              <div class="form-error-msg" id="error-telefono"></div>
+            </div>
+
+            <!-- 5. Título de la Conferencia -->
+            <div class="form-group">
+              <label for="form-titulo" class="form-label">
+                Título Propuesto de la Conferencia <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="form-titulo" name="titulo" class="form-input" placeholder="Ej. Implementación de Micro-redes y Energías Renovables en Guatemala" required>
+              <div class="form-error-msg" id="error-titulo"></div>
+            </div>
+
+            <!-- 6. Modalidad de Participación -->
+            <div class="form-group">
+              <label for="form-modalidad" class="form-label">
+                Modalidad de Participación <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <select id="form-modalidad" name="modalidad" class="form-select" required>
+                <option value="individual">Conferencia individual (1 hora completa)</option>
+                <option value="panel_2voces">Panel a dos voces (2 conferencistas)</option>
+                <option value="bloque_dividido">Bloque dividido (2 ponencias de 30 min)</option>
+              </select>
+              <div class="form-hint" id="modalidad-hint">Una persona utiliza el espacio completo de 1 hora.</div>
+              <div class="form-error-msg" id="error-modalidad"></div>
+            </div>
+
+            <!-- 7. Descripción / Resumen -->
+            <div class="form-group">
+              <label for="form-descripcion" class="form-label">
+                Resumen / Breve Descripción de la Ponencia <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <textarea id="form-descripcion" name="descripcion" class="form-textarea" rows="3" placeholder="Describe brevemente los objetivos, tecnologías y aporte de la ponencia..." required></textarea>
+              <div class="form-error-msg" id="error-descripcion"></div>
+            </div>
+
+            <!-- 8. Requerimientos Técnicos -->
+            <div class="form-group">
+              <label for="form-requerimientos" class="form-label">
+                Requerimientos Técnicos Especiales (Opcional)
+              </label>
+              <input type="text" id="form-requerimientos" name="requerimientos" class="form-input" placeholder="Ej. Proyector HDMI, conexión a internet cableada, audio estéreo">
+              <div class="form-error-msg" id="error-requerimientos"></div>
+            </div>
+
+            <!-- 9. Consentimientos -->
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="form-acepta-tratamiento" name="acepta_tratamiento" class="checkbox-input" required>
+                <span><strong>Acepto el tratamiento de mis datos personales</strong> exclusivamente para fines de coordinación logística y académica del CONESIEE 2026. <span class="required-star">*</span></span>
+              </label>
+              <div class="form-error-msg" id="error-acepta_tratamiento"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="form-acepta-publicacion" name="acepta_publicacion" class="checkbox-input" checked>
+                <span>Autorizo mostrar públicamente mi <strong>nombre, institución y título de la ponencia</strong> en la agenda oficial del congreso.</span>
+              </label>
+            </div>
+          </form>
+        </div>
+
+        <!-- Vista 2: Éxito y Código de Reservación -->
+        <div id="modal-view-success" class="success-card" style="display:none;">
+          <div class="success-icon-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>
+          </div>
+          <h3 class="success-title">¡Reservación Confirmada!</h3>
+          <p class="success-desc">Tu espacio para el CONESIEE 2026 ha sido reservado con éxito en el sistema.</p>
+
+          <div class="code-box">
+            <div class="code-box__label">Código Único de Reservación</div>
+            <div class="code-box__code" id="success-res-code">CONESIEE-2026-XXXXXXXX</div>
+            <button type="button" class="btn-copy" id="btn-copy-code">
+              <svg class="icon" aria-hidden="true"><use href="#icon-copy"></use></svg>
+              <span>Copiar Código</span>
+            </button>
+          </div>
+
+          <div class="success-warning-alert">
+            <strong>Importante:</strong> Guarda este código. Te servirá para cualquier consulta o modificación con el comité organizador.
+          </div>
+
+          <div class="slot-summary-box" style="text-align: left;">
+            <div class="slot-summary-item">
+              <span class="slot-summary-label">Expositor</span>
+              <span class="slot-summary-val" id="success-speaker-name">--</span>
+            </div>
+            <div class="slot-summary-item">
+              <span class="slot-summary-label">Fecha y Hora</span>
+              <span class="slot-summary-val" id="success-slot-datetime">--</span>
+            </div>
+            <div class="slot-summary-item" style="grid-column: span 2;">
+              <span class="slot-summary-label">Título de la Conferencia</span>
+              <span class="slot-summary-val" id="success-talk-title">--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie del Modal con Acciones -->
+      <div class="modal-footer" id="modal-footer-actions">
+        <button type="button" class="btn-secondary" id="btn-cancel-modal">Cancelar</button>
+        <button type="button" class="btn-submit" id="btn-submit-booking">
+          <svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg>
+          <span>Confirmar Reservación</span>
+        </button>
+      </div>
+
+      <div class="modal-footer" id="modal-footer-success" style="display:none;">
+        <button type="button" class="btn-submit" id="btn-finish-success" style="width:100%;">
+          <span>Entendido y Cerrar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. CONTENEDOR DE TOAST NOTIFICATIONS -->
+  <div id="toast-container" class="toast-container" aria-live="assertive"></div>
+
+  <!-- 8. PIE DE PÁGINA INSTITUCIONAL -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <div>
+        <h3 class="footer__title">CONESIEE 2026</h3>
+        <p>XXV Congreso Nacional de Estudiantes de Ingeniería Mecánica Eléctrica, Eléctrica y Electrónica.</p>
+        <p>Escuela de Ingeniería Mecánica Eléctrica (EIME), Facultad de Ingeniería, Universidad de San Carlos de Guatemala.</p>
+        <p style="margin-top: 0.5rem;">
+          <a href="https://eime.usac.edu.gt" target="_blank" rel="noopener noreferrer">
+            <span>Visitar portal oficial EIME USAC</span>
+            <svg class="icon" aria-hidden="true"><use href="#icon-external-link"></use></svg>
+          </a>
+        </p>
+      </div>
+      <div>
+        <h3 class="footer__title">Contacto y Dudas</h3>
+        <p>Comité Organizador de Conferencias:</p>
+        <p id="footer-committee-email">
+          <a href="mailto:contacto@conesiee.usac.edu.gt">contacto@conesiee.usac.edu.gt</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 CONESIEE · Escuela de Ingeniería Mecánica Eléctrica · USAC. Todos los derechos reservados.</p>
+      <p>Alojado en GitHub Pages · Respaldado con Google Sheets & Apps Script</p>
+    </div>
+  </footer>
+
+  <!-- Scripts de la Aplicación -->
+  <script src="js/config.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

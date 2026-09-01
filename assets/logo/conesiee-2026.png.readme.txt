@@ -1,0 +1,14 @@
+INSTRUCCIONES PARA EL LOGOTIPO OFICIAL:
+========================================
+
+1. Coloque el archivo PNG del logotipo autorizado del CONESIEE 2026 en este directorio con el nombre exacto:
+   assets/logo/conesiee-2026.png
+
+2. La aplicación web intentará cargar automáticamente 'assets/logo/conesiee-2026.png'.
+   Si el archivo no se encuentra o aún no se ha colocado, la interfaz cargará limpiamente
+   el logotipo vectorial institucional SVG ('assets/logo/conesiee-logo.svg') como respaldo.
+
+3. Dimensiones recomendadas para la imagen PNG:
+   - Ancho: 400px a 800px
+   - Alto: 120px a 240px
+   - Fondo: Transparente (.png)

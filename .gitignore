@@ -1,0 +1,15 @@
+# Entornos de desarrollo y editores
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Temporales y respaldos
+*.tmp
+*.bak
+*~
+
+# Dependencias locales o pruebas
+node_modules/
+package-lock.json
