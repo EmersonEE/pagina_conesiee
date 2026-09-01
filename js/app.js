@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <div class="slot-card__venue">
                 <svg class="icon" aria-hidden="true"><use href="#icon-map-pin"></use></svg>
-                <span>${FormValidator.escapeHTML(slot.sede || APP_CONFIG.VENUE_DEFAULT)}</span>
+                <span>${FormValidator.escapeHTML((slot.sede && !slot.sede.includes('Auditorio Central EIME')) ? slot.sede : APP_CONFIG.VENUE_DEFAULT)}</span>
               </div>
 
               ${publicTalkHtml}
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
     DOM.formHorarioId.value = slot.id;
     DOM.summarySlotDate.textContent = formatFriendlyDate(slot.fecha);
     DOM.summarySlotTime.textContent = `${formatCleanTime(slot.hora_inicio)} – ${formatCleanTime(slot.hora_fin)} (Hora Guatemala)`;
-    DOM.summarySlotVenue.textContent = slot.sede || APP_CONFIG.VENUE_DEFAULT;
+    DOM.summarySlotVenue.textContent = (slot.sede && !slot.sede.includes('Auditorio Central EIME')) ? slot.sede : APP_CONFIG.VENUE_DEFAULT;
 
     // Modalidad por defecto
     DOM.formModalidad.value = 'individual';
