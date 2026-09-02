@@ -30,21 +30,18 @@ const ApiService = (() => {
         intervalo_actualizacion_seg: 20
       },
       horarios: [
-        { id: 'SLOT-2026-0928-1400', fecha: '2026-09-28', hora_inicio: '14:00', hora_fin: '15:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-0928-1600', fecha: '2026-09-28', hora_inicio: '16:00', hora_fin: '17:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-0928-1700', fecha: '2026-09-28', hora_inicio: '17:00', hora_fin: '18:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Reservado', conferencia_publica: { nombre_expositor: 'Ing. Carlos Mendoza', institucion: 'IEEE Guatemala', titulo: 'Transición Energética y Redes Inteligentes en Centroamérica' } },
-        { id: 'SLOT-2026-0929-1400', fecha: '2026-09-29', hora_inicio: '14:00', hora_fin: '15:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-0929-1600', fecha: '2026-09-29', hora_inicio: '16:00', hora_fin: '17:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Bloqueado', conferencia_publica: null },
-        { id: 'SLOT-2026-0929-1700', fecha: '2026-09-29', hora_inicio: '17:00', hora_fin: '18:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-0930-1400', fecha: '2026-09-30', hora_inicio: '14:00', hora_fin: '15:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-0930-1600', fecha: '2026-09-30', hora_inicio: '16:00', hora_fin: '17:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-0930-1700', fecha: '2026-09-30', hora_inicio: '17:00', hora_fin: '18:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-1001-0900', fecha: '2026-10-01', hora_inicio: '09:00', hora_fin: '10:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-1001-1100', fecha: '2026-10-01', hora_inicio: '11:00', hora_fin: '12:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null },
-        { id: 'SLOT-2026-1001-1200', fecha: '2026-10-01', hora_inicio: '12:00', hora_fin: '13:00', sede: 'Auditorio Central EIME / Híbrido', estado: 'Disponible', conferencia_publica: null }
+        { id: 'SLOT-2026-0928-1400', fecha: '2026-09-28', hora_inicio: '14:00', hora_fin: '15:00', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-0928-1545', fecha: '2026-09-28', hora_inicio: '15:45', hora_fin: '16:45', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-0929-1400', fecha: '2026-09-29', hora_inicio: '14:00', hora_fin: '15:00', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-0929-1545', fecha: '2026-09-29', hora_inicio: '15:45', hora_fin: '16:45', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-0930-1400', fecha: '2026-09-30', hora_inicio: '14:00', hora_fin: '15:00', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-0930-1545', fecha: '2026-09-30', hora_inicio: '15:45', hora_fin: '16:45', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-1001-0900', fecha: '2026-10-01', hora_inicio: '09:00', hora_fin: '10:00', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-1001-1100', fecha: '2026-10-01', hora_inicio: '11:00', hora_fin: '12:00', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null },
+        { id: 'SLOT-2026-1001-1200', fecha: '2026-10-01', hora_inicio: '12:00', hora_fin: '13:00', sede: 'Biblioteca Central USAC', estado: 'Disponible', conferencia_publica: null }
       ],
-      total: 12,
-      disponibles: 10,
+      total: 9,
+      disponibles: 9,
       timestamp: new Date().toISOString(),
       isDemoMode: true
     };

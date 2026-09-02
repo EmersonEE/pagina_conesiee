@@ -83,18 +83,15 @@ function setupSheetHorarios(ss) {
     var initialSlots = [
       // Lunes 28 de septiembre 2026
       ['SLOT-2026-0928-1400', '2026-09-28', '14:00', '15:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0928-1600', '2026-09-28', '16:00', '17:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0928-1700', '2026-09-28', '17:00', '18:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0928-1545', '2026-09-28', '15:45', '16:45', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
 
       // Martes 29 de septiembre 2026
       ['SLOT-2026-0929-1400', '2026-09-29', '14:00', '15:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0929-1600', '2026-09-29', '16:00', '17:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0929-1700', '2026-09-29', '17:00', '18:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0929-1545', '2026-09-29', '15:45', '16:45', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
 
       // Miércoles 30 de septiembre 2026
       ['SLOT-2026-0930-1400', '2026-09-30', '14:00', '15:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0930-1600', '2026-09-30', '16:00', '17:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
-      ['SLOT-2026-0930-1700', '2026-09-30', '17:00', '18:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
+      ['SLOT-2026-0930-1545', '2026-09-30', '15:45', '16:45', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
 
       // Jueves 1 de octubre 2026
       ['SLOT-2026-1001-0900', '2026-10-01', '09:00', '10:00', 'Biblioteca Central USAC', 'Disponible', '', new Date().toISOString()],
