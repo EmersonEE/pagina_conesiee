@@ -96,6 +96,14 @@ function validateReservationPayload(payload) {
     sanitized.modalidad = modalidad;
   }
 
+  // 9.1 Formato de exposición (Presencial o Virtual)
+  var formato = sanitizeString(payload.formato, 20).toLowerCase();
+  if (formato === 'virtual') {
+    sanitized.formato = 'Virtual';
+  } else {
+    sanitized.formato = 'Presencial';
+  }
+
   // 10. Requerimientos técnicos (opcional, máximo 500 caracteres)
   var requerimientos = sanitizeString(payload.requerimientos || '', 500);
   sanitized.requerimientos = requerimientos;

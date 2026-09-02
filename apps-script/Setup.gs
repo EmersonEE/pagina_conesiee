@@ -129,6 +129,7 @@ function setupSheetReservaciones(ss) {
     'titulo',
     'descripcion',
     'modalidad',
+    'formato',
     'requerimientos',
     'acepta_tratamiento',
     'acepta_publicacion',

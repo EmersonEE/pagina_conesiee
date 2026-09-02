@@ -84,6 +84,11 @@ const FormValidator = (() => {
       if (!val || valid.indexOf(val) === -1) return 'Seleccione una modalidad de participación válida.';
       return null;
     },
+    formato: (val) => {
+      const valid = ['presencial', 'virtual'];
+      if (!val || valid.indexOf(val) === -1) return 'Seleccione el formato (Presencial o Virtual).';
+      return null;
+    },
     requerimientos: (val) => {
       const v = (val || '').trim();
       if (v.length > 500) return 'Los requerimientos técnicos no pueden exceder 500 caracteres.';
@@ -132,6 +137,7 @@ const FormValidator = (() => {
       titulo: (raw.titulo || '').trim(),
       descripcion: (raw.descripcion || '').trim(),
       modalidad: raw.modalidad || 'individual',
+      formato: raw.formato || 'presencial',
       requerimientos: (raw.requerimientos || '').trim(),
       acepta_tratamiento: raw.acepta_tratamiento === 'on' || raw.acepta_tratamiento === true || raw.acepta_tratamiento === 'true',
       acepta_publicacion: raw.acepta_publicacion === 'on' || raw.acepta_publicacion === true || raw.acepta_publicacion === 'true',

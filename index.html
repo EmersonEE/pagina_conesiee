@@ -236,6 +236,18 @@
               <div class="form-error-msg" id="error-modalidad"></div>
             </div>
 
+            <!-- 6.1 Formato de Exposición: Presencial o Virtual -->
+            <div class="form-group">
+              <label for="form-formato" class="form-label">
+                Formato de Exposición <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <select id="form-formato" name="formato" class="form-select" required>
+                <option value="presencial" selected>Presencial (en Biblioteca Central USAC)</option>
+                <option value="virtual">Virtual (Transmisión en vivo / Zoom)</option>
+              </select>
+              <div class="form-error-msg" id="error-formato"></div>
+            </div>
+
             <!-- 7. Descripción / Resumen -->
             <div class="form-group">
               <label for="form-descripcion" class="form-label">
@@ -360,9 +372,9 @@
   </footer>
 
   <!-- Scripts de la Aplicación (con versionado anti-caché) -->
-  <script src="js/config.js?v=2.0"></script>
-  <script src="js/validation.js?v=2.0"></script>
-  <script src="js/api.js?v=2.0"></script>
-  <script src="js/app.js?v=2.0"></script>
+  <script src="js/config.js?v=2.1"></script>
+  <script src="js/validation.js?v=2.1"></script>
+  <script src="js/api.js?v=2.1"></script>
+  <script src="js/app.js?v=2.1"></script>
 </body>
 </html>

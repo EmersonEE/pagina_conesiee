@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formTelefono: document.getElementById('form-telefono'),
     formTitulo: document.getElementById('form-titulo'),
     formModalidad: document.getElementById('form-modalidad'),
+    formFormato: document.getElementById('form-formato'),
     modalidadHint: document.getElementById('modalidad-hint'),
     formDescripcion: document.getElementById('form-descripcion'),
     formRequerimientos: document.getElementById('form-requerimientos'),
@@ -422,8 +423,9 @@ document.addEventListener('DOMContentLoaded', () => {
     DOM.summarySlotTime.textContent = `${formatCleanTime(slot.hora_inicio)} – ${formatCleanTime(slot.hora_fin)} (Hora Guatemala)`;
     DOM.summarySlotVenue.textContent = (slot.sede && !slot.sede.includes('Auditorio Central EIME')) ? slot.sede : APP_CONFIG.VENUE_DEFAULT;
 
-    // Modalidad por defecto
+    // Modalidad y Formato por defecto
     DOM.formModalidad.value = 'individual';
+    if (DOM.formFormato) DOM.formFormato.value = 'presencial';
     updateModalityHint('individual');
 
     // Mostrar modal con accesibilidad
@@ -622,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validación interactiva en tiempo real al escribir
     const inputsToValidate = [
-      'nombre', 'institucion', 'correo', 'telefono', 'titulo', 'descripcion', 'requerimientos'
+       'nombre', 'institucion', 'correo', 'telefono', 'titulo', 'descripcion', 'formato', 'requerimientos'
     ];
     inputsToValidate.forEach(fieldName => {
       const input = document.getElementById(`form-${fieldName}`);

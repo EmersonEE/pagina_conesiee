@@ -284,6 +284,7 @@ function apiReserveSlot(payload) {
       sanitizeForSheet(data.titulo),
       sanitizeForSheet(data.descripcion),
       data.modalidad,
+      data.formato, // 'Presencial' o 'Virtual'
       sanitizeForSheet(data.requerimientos),
       data.acepta_tratamiento ? 'SÍ' : 'NO',
       data.acepta_publicacion ? 'SÍ' : 'NO',
@@ -314,6 +315,7 @@ function apiReserveSlot(payload) {
       nombre_expositor: data.nombre,
       titulo_conferencia: data.titulo,
       modalidad: data.modalidad,
+      formato: data.formato,
       fecha_registro: timestampGuatemala
     };
   }, 10000); // 10 segundos de espera de lock
