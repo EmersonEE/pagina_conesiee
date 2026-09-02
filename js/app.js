@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slots: [],
     eventInfo: null,
     activeDayFilter: 'all',
-    activeStatusFilter: 'Disponible',
+    activeStatusFilter: 'all',
     selectedSlot: null,
     isSubmitting: false,
     pollTimer: null,
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
           badgeLabel = 'Cancelado';
         }
 
-        // Información pública si fue autorizada
+        // Información pública si fue autorizada o resumen de reservado
         let publicTalkHtml = '';
         if (slot.conferencia_publica && slot.conferencia_publica.titulo) {
           publicTalkHtml = `
@@ -321,7 +321,17 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="slot-card__talk-title">${FormValidator.escapeHTML(slot.conferencia_publica.titulo)}</div>
               <div class="slot-card__speaker">
                 <svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg>
-                <span>${FormValidator.escapeHTML(slot.conferencia_publica.nombre_expositor || 'Expositor')} (${FormValidator.escapeHTML(slot.conferencia_publica.institucion || 'USAC')})</span>
+                <span><strong>${FormValidator.escapeHTML(slot.conferencia_publica.nombre_expositor || 'Conferencista')}</strong> ${slot.conferencia_publica.institucion ? `· ${FormValidator.escapeHTML(slot.conferencia_publica.institucion)}` : ''}</span>
+              </div>
+            </div>
+          `;
+        } else if (isReserved) {
+          publicTalkHtml = `
+            <div class="slot-card__public-talk" style="background: #F8FAFC; border-left-color: #64748B;">
+              <div class="slot-card__talk-title" style="color: #475569; font-weight: 700;">Espacio Asignado</div>
+              <div class="slot-card__speaker" style="color: #64748B;">
+                <svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg>
+                <span>Conferencia confirmada</span>
               </div>
             </div>
           `;
